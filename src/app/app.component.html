@@ -1,3 +1,46 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ appName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <ion-label class="ion-text-center ion-margin-bottom">
+      By: {{ authorName }}
+    </ion-label>
+  </div>
+
+  <ion-item>
+    <ion-label>Pilih Metrik</ion-label>
+    <ion-select (ionChange)="onMetricChange($event)">
+      <ion-select-option *ngFor="let metric of metrics" [value]="metric">{{ metric }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Dari:</ion-label>
+    <ion-select (ionChange)="onUnitFromChange($event)" [disabled]="selectedMetric === ''">
+      <ion-select-option *ngFor="let unit of units[selectedMetric]" [value]="unit">{{ unit }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Ke:</ion-label>
+    <ion-select (ionChange)="onUnitToChange($event)" [disabled]="selectedMetric === '' || selectedUnitFrom === ''">
+      <ion-select-option *ngFor="let unit of units[selectedMetric]" [value]="unit">{{ unit }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Masukkan Nilai Awal</ion-label>
+    <ion-input type="number" [(ngModel)]="inputValue"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="convert()" [disabled]="!selectedMetric || !selectedUnitFrom || !selectedUnitTo || !inputValue">Konversi</ion-button>
+
+  <ion-item>
+    <ion-label position="stacked">Hasil Konversi</ion-label>
+    <ion-input disabled [(ngModel)]="resultValue"></ion-input>
+  </ion-item>
+</ion-content>

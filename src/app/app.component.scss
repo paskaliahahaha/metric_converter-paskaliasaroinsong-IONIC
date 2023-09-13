@@ -1,0 +1,35 @@
+/* Warna latar belakang untuk header */
+ion-header {
+    --background: #3498db;
+  }
+  
+  /* Warna teks judul dan tulisan "By:" */
+  ion-title, ion-label {
+    color: #0c0c0c;
+  }
+  
+  /* Tata letak dan margin untuk elemen-elemen dalam konten */
+  ion-content {
+    --ion-background-color: #bfdcd2;
+    --ion-padding: 16px;
+  
+    ion-label {
+      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: 8px;
+    }
+  
+    ion-item {
+      margin-top: 8px;
+    }
+  
+    ion-button {
+      margin-top: 16px;
+    }
+  
+    ion-input {
+      font-size: 16px;
+    }
+  }
+  
+
+  
